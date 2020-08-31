@@ -5,6 +5,9 @@ import kai.simulator.slot.BingoLines;
 import kai.simulator.slot.Screen;
 import kai.simulator.slot.ScreenResult;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
@@ -57,6 +60,30 @@ public class Main {
 
     private static void exportResults(ArrayList<ScreenResult> results) {
         // ...輸出檔案的部分
+        try {
+
+            String fileName = System.currentTimeMillis() + ".txt";
+            File myObj = new File(fileName);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            FileWriter writer = new FileWriter(fileName);
+            results.forEach(result -> {
+                try {
+                    writer.write(result.toString());
+                    writer.write("\n\r");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            writer.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
