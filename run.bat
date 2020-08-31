@@ -1,0 +1,1 @@
+java -jar SlotFullSimulator-1.0.jar
