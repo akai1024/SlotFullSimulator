@@ -64,6 +64,16 @@ public class Screen {
         return screen;
     }
 
+    public int getSymbolSize() {
+        int size = 0;
+        for (Boolean symbol : screen) {
+            if (symbol) {
+                size++;
+            }
+        }
+        return size;
+    }
+
     public ArrayList<Integer> toIntegerList() {
         ArrayList<Integer> numList = new ArrayList<>();
         screen.forEach(bool -> numList.add(bool ? 1 : 0));
